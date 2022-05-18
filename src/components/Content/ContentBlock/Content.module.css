@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+.MainContentBlock{
+    width: 1200px;
+    margin: 0 auto;
+}
+.QuestionCard{
+    width: 1200px;
+    margin: 20px auto;
+    border: 1px solid black;
+    padding: 6px;
+}
+.cardTittle{
+    width: 1150px;
+    display: flex;
+    justify-content: space-between;
+  
+}
+.cardAuthor{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+.cardAuthor img {
+    width: 60px;
+    border-radius: 100%;
+}
+.questionFooter{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+.tittle{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+}
