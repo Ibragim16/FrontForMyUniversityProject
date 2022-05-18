@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Signin from "./components/Authorization/Signin";
+import Signup from "./components/Authorization/Signup";
+import Header from "./components/header/Header";
+import Main from "./components/Main";
+import Question from "./components/OneQuestion/Question";
 
 function App() {
+  const {token} = useSelector(state => state.user)
+  if(!token){
+    return (
+      <div className="App">
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin/>} />
+          <Route path="/" element={<Navigate to="/signin" replace/>}/>
+
+        </Routes>
+      </div>
+    );
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/question/:id" element={<Question/>}/>
+
+      </Routes>
     </div>
   );
 }

@@ -1,0 +1,19 @@
+.headerMain{
+    width: 100%;
+    height: 60px;
+    background-color: bisque;
+}
+.headerContent{
+    width: 1240px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 15px;
+}
+.headerLeft{
+    display: flex;
+    justify-content: space-between;
+}
+body{
+    background-color: rgba(236, 236, 236, 0.881);
+}
