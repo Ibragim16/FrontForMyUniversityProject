@@ -8,7 +8,7 @@ const Question = () => {
     const params = useParams()
 
     useEffect(()=>{
-        
+
     })
     const state = useSelector((state)=> state.question.question)
     
@@ -18,6 +18,7 @@ const Question = () => {
         )
     })
     return (
+        <div className={ styles.questionMainBlock}>
         <div className={styles.QuestionCard}>
             <div className={styles.cardTittle}>
                 <div className={styles.cardAuthor}>
@@ -43,15 +44,14 @@ const Question = () => {
             </div>
             <div className={styles.questionFooter}>
                 <div className={styles.raiting}>
-                    <button>upp</button>
+                    <button>^</button>
                     <span>0</span>
-                    <button>down</button>
+                    <button>🔽</button>
                 </div>
-                <div className={styles.discussion}>
-                    <span>🗨</span>
-                    
-                </div>
+               
             </div>
+        </div>
+
         </div>
     );
 };

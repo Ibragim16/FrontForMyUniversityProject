@@ -10,7 +10,7 @@ const QuestionCard = ({question}) => {
                 <div className={styles.cardAuthor}>
                     <img src={question.author.img} alt="Icon" />
                     <span>{question.author.firstName}</span>
-                    <span>Добавлен {format(question.createdAt)}</span>
+                    <span className={styles.addedTime}>Добавлен {format(question.createdAt)}</span>
                 </div>
                 <div className={styles.cardTag}>
                     {question.tags.map((item)=>{
@@ -25,14 +25,14 @@ const QuestionCard = ({question}) => {
             </div>
             <div className={styles.questionText}>
                 <span>
-                    {question.text}
+                    {question.title}
                 </span>
             </div>
             <div className={styles.questionFooter}>
                 <div className={styles.raiting}>
-                    <button>upp</button>
-                    <span>0</span>
-                    <button>down</button>
+                    <button>˄</button>
+                    <span>{question.raiting.length}</span>
+                    <button>˅</button>
                 </div>
                 <div className={styles.discussion}>
                     <span>🗨</span>
