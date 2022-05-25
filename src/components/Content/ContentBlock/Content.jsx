@@ -6,14 +6,17 @@ import  { getQuestion } from "../../../redux/features/question";
 import QuestionSimpleCard from "./QuestionSimpleCard";
 
 const Content = () => {
-    const [check , setCheck] = useState("false")
+    const [check , setCheck] = useState(false)
+    
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getQuestion());
-  },[]);
+  },[dispatch]);
 
-  const state = useSelector((state) => state.question.question);
+const state = useSelector((state)=>state.question.question)
 console.log(state)
+
+
   return (
     <div className={styles.MainContentBlock}>
         <div className={styles.tittle}>

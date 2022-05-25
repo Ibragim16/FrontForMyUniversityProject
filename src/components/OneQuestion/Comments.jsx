@@ -1,14 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from "./question.module.css"
+import {format} from "timeago.js"
 
-const Comments = () => {
-    const state = useSelector((state)=> state.comments.comments)
+const Comments = ({comment}) => {
+    console.log(comment)
+
     return (
-        <div>
+        <div className={styles.commentBlocks}>
             <div className={styles.commentsTitle}>
-                <span>Комментарии ({state.length})</span>
+                <img src={comment.author.img} alt="" />
+                <div className={styles.commentsUserInf}>
+                    <div>{comment.author.firstName}</div>
+                    <span className={styles.addedTime}>{format(comment.createdAt)}</span>
+                </div>
             </div>
+            <div className={styles.commentText}>{comment.text}</div>
         </div>
     );
 };

@@ -104,7 +104,6 @@ export const getQuestion = () => {
           "Content-type": "application/json",
         },
       });
-      console.log(data);
 
       dispatch({ type: "question/get/fullfilled", payload: data });
     } catch (err) {
@@ -118,6 +117,7 @@ export const getOneQuestion = (id) => {
     const state = getState();
     dispatch({ type: "oneQuestion/get/pending" });
     try {
+
       const data = await axios.get(`http://localhost:4000/question/${id}`, {
         headers: {
           Authorization: `Bearer ${state.user.token}`,
