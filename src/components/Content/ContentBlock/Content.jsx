@@ -14,10 +14,23 @@ const Content = () => {
   },[dispatch]);
 
 const state = useSelector((state)=>state.question.question)
-console.log(state)
+const questionLoading = useSelector((state)=>state.question.questionLoading)
 
+console.log(questionLoading)
 
+if(questionLoading)
+{
+    return(
+        <div className={styles.preloader}>
+  <div className={styles.preloader__row}>
+    <div className={styles.preloader__item}></div>
+    <div className={styles.preloader__item}></div>
+  </div>
+</div>
+    )
+}
   return (
+      
     <div className={styles.MainContentBlock}>
         <div className={styles.tittle}>
       <div>

@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Signin from "./components/Authorization/Signin";
 import Signup from "./components/Authorization/Signup";
+import Favorites from "./components/Content/FavoritesBlock/Favorites";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
 import Question from "./components/OneQuestion/Question";
@@ -35,6 +36,7 @@ function App() {
         <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/favorite" element={<Favorites/>}/>
         <Route path="/question/:id" element={<Question state = {state}/>}/>
 
       </Routes>

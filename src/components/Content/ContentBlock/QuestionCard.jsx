@@ -1,9 +1,16 @@
 import React from 'react';
 import styles from "./Content.module.css"
+import { useDispatch } from 'react-redux';
+
 import {format} from "timeago.js"
 import { Link } from 'react-router-dom';
 
 const QuestionCard = ({question}) => {
+    const dispatch = useDispatch()
+
+    const handleAddToFavorite = ()=>{
+        dispatch()
+    }
     return (
         <div className={styles.QuestionCard}>
             <div className={styles.cardTittle}>
@@ -30,7 +37,7 @@ const QuestionCard = ({question}) => {
             </div>
             <div className={styles.questionFooter}>
                 <div className={styles.raiting}>
-                    <button>˄</button>
+                    <button >˄</button>
                     <span>{question.raiting.length}</span>
                     <button>˅</button>
                 </div>
@@ -38,6 +45,9 @@ const QuestionCard = ({question}) => {
                     <span>🗨</span>
                     <Link to={`/question/${question._id}`}><button>обсуждение</button></Link>
                     
+                </div>
+                <div>
+                    <span onClick={()=> handleAddToFavorite()}>Добавить в Избранные</span>
                 </div>
             </div>
         </div>

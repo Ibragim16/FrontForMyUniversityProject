@@ -1,82 +1,20 @@
-*{
-    box-sizing: border-box;
-}
-.MainContentBlock{
-    width: 1200px;
-    margin: 0 auto;
-    
-}
-.QuestionCard{
-    width: 1200px;
-    margin: 20px auto;
-    padding: 15px;
-    background-color: whitesmoke;
-    box-shadow: 0px 2px 10px -5px;
-}
-.raiting button {
-    border: none;
-    background: none;
-}
-.discussion button {
-    border: none;
-    background: none;
-}
-.cardTittle{
-    width: 1150px;
-    display: flex;
-    justify-content: space-between;
-  
-}
-.cardAuthor{
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
-}
-.cardAuthor img {
-    width: 60px;
-    border-radius: 100%;
-}
-.questionFooter{
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
-}
-.tittle{
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    margin: 30px auto;
-}
-.addedTime{
-    color: rgba(154, 151, 151, 0.834);
-    font-size: 12px;
-}
-.tagButton{
-    border: none;
-    background-color: rgba(11, 127, 251, 0.712);
-    border-radius: 5px;
-}
-.cardTag{
-    display: flex;
-}
-
 /* Стили для спинера */
 .preloader {
     /*фиксированное позиционирование*/
-    position: relative;
+    position: fixed;
     /* координаты положения */
     left: 0;
-    top: 300px;
-    right: 320px;
+    top: 0;
+    right: 0;
     bottom: 0;
     /* фоновый цвет элемента */
     background: #e0e0e0;
     /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+    z-index: 1001;
   }
   
   .preloader__row {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     width: 70px;

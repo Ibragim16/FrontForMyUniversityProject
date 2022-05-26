@@ -2,6 +2,7 @@ import axios from "axios";
 const initialState = {
   questions: [],
   oneQuestion: {},
+  questionLoading: false
 };
 
 const question = (state = initialState, action) => {

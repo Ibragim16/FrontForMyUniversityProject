@@ -1,7 +1,7 @@
 import axios from "axios";
 const initialState = {
   comments: [],
-  commentsByQuestion: [],
+  commentsLoading: false
 };
 
 const comments = (state = initialState, action) => {
@@ -15,9 +15,9 @@ const comments = (state = initialState, action) => {
         console.log(action.payload)
       return {
         ...state,
-        commentsByQuestion:[ 
-            ...state.commentsByQuestion, 
-            action.payload
+        comments:[ 
+            
+            ...action.payload
         ],
         commentsLoading: false,
       };
@@ -50,7 +50,7 @@ const comments = (state = initialState, action) => {
       return {
         ...state,
         commentsLoading: false,
-        commentsByQuestion: action.payload,
+        comments:[ ...action.payload]
       };
     case "comments/getByQuestion/rejected":
       return {
@@ -126,24 +126,24 @@ export const deleteComment = (id) => {
   };
 };
 
-export const getComments = () => {
-  return async (dispatch, getState) => {
-    const state = getState();
+// export const getComments = () => {
+//   return async (dispatch, getState) => {
+//     const state = getState();
 
-    dispatch({ type: "comments/get/pending" });
-    try {
-      const data = await axios.get("http://localhost:4000/comments", {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-        },
-      });
-      dispatch({ type: "comments/get/fullfilled", payload: data });
-    } catch (err) {
+//     dispatch({ type: "comments/get/pending" });
+//     try {
+//       const data = await axios.get("http://localhost:4000/comments", {
+//         headers: {
+//           Authorization: `Bearer ${state.user.token}`,
+//         },
+//       });
+//       dispatch({ type: "comments/get/fullfilled", payload: data });
+//     } catch (err) {
 
-      dispatch({ type: "comments/get/rejected", error: err.toString() });
-    }
-  };
-};
+//       dispatch({ type: "comments/get/rejected", error: err.toString() });
+//     }
+//   };
+// };
 
 export const getCommentsByQuestionId = (id) => {
   return async (dispatch, getState) => {
@@ -156,8 +156,8 @@ export const getCommentsByQuestionId = (id) => {
           Authorization: `Bearer ${state.user.token}`,
         },
       });
-
-      dispatch({ type: "comments/getByQuestion/fullfilled", payload: data });
+      console.log(data)
+      dispatch({ type: "comments/getByQuestion/fullfilled", payload: data.data });
     } catch (err) {
       dispatch({
         type: "comments/getByQuestion/rejected",
