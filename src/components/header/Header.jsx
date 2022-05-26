@@ -14,13 +14,16 @@ const Header = () => {
       <div className={styles.headerContent}>
         <div className={styles.headerLeft}>
           <div>💥</div>
-          <Link to="/"><div>Название сайта</div></Link> 
+          <Link to="/" className={styles.link}><div >Название сайта</div></Link> 
+        </div>
+        <div >
+          <Link to="/favorite" className={styles.link}>Избранные</Link>
         </div>
         <div>
           {!token?
           <div>Регистрация</div>
           :
-          <Link to="/signin" onClick={() => handleExit()}><div>выход</div></Link>
+          <Link to="/signin" onClick={() => handleExit()} className={styles.link}><div>выход</div></Link>
         }
         </div>
       </div>

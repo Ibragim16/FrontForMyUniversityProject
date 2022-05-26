@@ -4,28 +4,48 @@ import { useParams } from "react-router-dom";
 import styles from "./question.module.css";
 import { format } from "timeago.js";
 import Comments from "./Comments";
-import { addComment, getCommentsByQuestionId } from "../../redux/features/comments";
+import {
+  addComment,
+  getCommentsByQuestionId,
+} from "../../redux/features/comments";
 import { getOneQuestion, getQuestion } from "../../redux/features/question";
 
-const Question = ({state}) => {
+const Question = ({ state }) => {
   const params = useParams();
-  const [comment, setComment] = useState()
-  const dispatch = useDispatch()
-  
-  useEffect(() => {
-      dispatch(getCommentsByQuestionId(params.id))
-      
-    },[dispatch, params.id]);
-    const comments = useSelector((state) => state.comments.commentsByQuestion);
+  const [comment, setComment] = useState();
+  const dispatch = useDispatch();
 
-    const question = state?.find((item) => {
+  useEffect(() => {
+    dispatch(getCommentsByQuestionId(params.id));
+  }, [dispatch, params.id]);
+  const { comments, commentsLoading } = useSelector((state) => state.comments);
+
+  const question = state?.find((item) => {
     return item._id.toString() === params.id;
   });
-console.log(comments)
+  console.log(comments);
 
-  const handleAddComment = ()=>{
-      console.log(111)
-      dispatch(addComment(params.id, comment))
+  const handleAddComment = () => {
+      setComment("")
+    console.log(comments);
+    dispatch(addComment(params.id, comment));
+  };
+
+  const questionLoading = useSelector(
+    (state) => state.question.questionLoading
+  );
+
+  console.log(questionLoading);
+
+  if (questionLoading) {
+    return (
+      <div className={styles.preloader}>
+        <div className={styles.preloader__row}>
+          <div className={styles.preloader__item}></div>
+          <div className={styles.preloader__item}></div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -35,7 +55,9 @@ console.log(comments)
           <div className={styles.cardAuthor}>
             <img src={question?.author?.img} alt="Icon" />
             <span>{question?.author?.firstName}</span>
-            <span className={styles.addedTime}>Добавлен {format(question?.createdAt)}</span>
+            <span className={styles.addedTime}>
+              Добавлен {format(question?.createdAt)}
+            </span>
           </div>
           <div className={styles.cardTag}>
             {question?.tags?.map((item) => {
@@ -58,22 +80,32 @@ console.log(comments)
         </div>
       </div>
       <div className={styles.commentsMainBlock}>
-        <h2>Комментарии ({comments?.data?.length})</h2>
+        <h2>Комментарии ({comments.length})</h2>
       </div>
       <div className={styles.commentsInputBlock}>
-        <div >
-          <input type="text-area" value={comment} onChange={(e)=> setComment(e.target.value)}/>
+        <div>
+          <input
+            type="text-area"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
         </div>
-        <button onClick={()=> handleAddComment()}>опубликовать</button>
+        <button onClick={() => handleAddComment()}>опубликовать</button>
       </div>
       <div className={styles.commentsMap}>
-          {comments?.data?.map((comment)=>{
-              return(
-                <Comments comment = {comment} />
-              )
-          })}
-          
-
+        {comments.map((comment) => {
+          if (commentsLoading) {
+            return (
+              <div className={styles.preloader}>
+                <div className={styles.preloader__row}>
+                  <div className={styles.preloader__item}></div>
+                  <div className={styles.preloader__item}></div>
+                </div>
+              </div>
+            );
+          }
+          return <Comments comment={comment} />;
+        })}
       </div>
     </div>
   );
