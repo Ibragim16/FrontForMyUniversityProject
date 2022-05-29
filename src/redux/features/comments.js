@@ -151,11 +151,7 @@ export const getCommentsByQuestionId = (id) => {
 
     dispatch({ type: "comments/getByQuestion/pending" });
     try {
-      const data = await axios.get(`http://localhost:4000/comments/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-        },
-      });
+      const data = await axios.get(`http://localhost:4000/comments/${id}`);
       console.log(data)
       dispatch({ type: "comments/getByQuestion/fullfilled", payload: data.data });
     } catch (err) {

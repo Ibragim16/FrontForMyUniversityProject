@@ -23,11 +23,9 @@ const Question = ({ state }) => {
   const question = state?.find((item) => {
     return item._id.toString() === params.id;
   });
-  console.log(comments);
 
   const handleAddComment = () => {
       setComment("")
-    console.log(comments);
     dispatch(addComment(params.id, comment));
   };
 
@@ -35,7 +33,6 @@ const Question = ({ state }) => {
     (state) => state.question.questionLoading
   );
 
-  console.log(questionLoading);
 
   if (questionLoading) {
     return (

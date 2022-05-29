@@ -4,6 +4,7 @@ import styles from "./Content.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import  { getQuestion } from "../../../redux/features/question";
 import QuestionSimpleCard from "./QuestionSimpleCard";
+import { getFavorite } from "../../../redux/features/favorite";
 
 const Content = () => {
     const [check , setCheck] = useState(false)
@@ -11,12 +12,14 @@ const Content = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getQuestion());
+    dispatch(getFavorite())
   },[dispatch]);
 
+
+const stateFav = useSelector((state)=>state.favorite.favorites)
 const state = useSelector((state)=>state.question.question)
 const questionLoading = useSelector((state)=>state.question.questionLoading)
 
-console.log(questionLoading)
 
 if(questionLoading)
 {
@@ -56,8 +59,8 @@ if(questionLoading)
         {state?.map((question) => {
             return(
 
-                !check?<QuestionCard question={question} />
-                :<QuestionSimpleCard question={question}/>
+                !check?<QuestionCard question={question} state = {stateFav} />
+                :<QuestionSimpleCard question={question} state = {stateFav}/>
             )
         })}
       </div>

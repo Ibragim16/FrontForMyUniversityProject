@@ -22,10 +22,13 @@ function App() {
   if(!token){
     return (
       <div className="App">
+                <Header />
+
         <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/question/:id" element={<Question state = {state}/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin/>} />
-          <Route path="/" element={<Navigate to="/signin" replace/>}/>
 
         </Routes>
       </div>
@@ -36,6 +39,8 @@ function App() {
         <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/signin" element={<Navigate to="/" replace/>} />
+
         <Route path="/favorite" element={<Favorites/>}/>
         <Route path="/question/:id" element={<Question state = {state}/>}/>
 
