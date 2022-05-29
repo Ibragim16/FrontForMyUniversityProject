@@ -2,7 +2,7 @@ import axios from "axios";
 const initialState = {
   questions: [],
   oneQuestion: {},
-  questionLoading: false
+  questionLoading: false,
 };
 
 const question = (state = initialState, action) => {
@@ -48,26 +48,20 @@ const question = (state = initialState, action) => {
       return {
         ...state,
         uppRaitingLoading: false,
-        questions:[
-            ...state.questions.map((item)=>{
-               
-                   if(item._id === action.id){
-                    return (
-                        item.raiting.filter((user)=>{
-                            return(
-                                item
-                            )
-                        })
-                    )
-                   }
-                
-            })
-        ]
+        questions: [
+          ...state.questions.map((item) => {
+            if (item._id === action.id) {
+              return item.raiting.filter((user) => {
+                return item;
+              });
+            }
+          }),
+        ],
       };
     case "question/uppRaiting/rejected":
       return {
         ...state,
-        error: action.error
+        error: action.error,
       };
     case "question/downRaiting/pending":
       return {
@@ -99,12 +93,7 @@ export const getQuestion = () => {
     dispatch({ type: "question/get/pending" });
 
     try {
-      const data = await axios.get("http://localhost:4000/question", {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-          "Content-type": "application/json",
-        },
-      });
+      const data = await axios.get("http://localhost:4000/question");
 
       dispatch({ type: "question/get/fullfilled", payload: data });
     } catch (err) {
@@ -118,13 +107,7 @@ export const getOneQuestion = (id) => {
     const state = getState();
     dispatch({ type: "oneQuestion/get/pending" });
     try {
-
-      const data = await axios.get(`http://localhost:4000/question/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-          "Content-type": "application/json",
-        },
-      });
+      const data = await axios.get(`http://localhost:4000/question/${id}`);
       dispatch({ type: "oneQuestion/get/fullfilled", payload: data });
     } catch (err) {
       dispatch({ type: "oneQuestion/get/rejected", error: err.toString() });
@@ -137,12 +120,18 @@ export const uppRaiting = (id) => {
     const state = getState();
     dispatch({ type: "question/uppRaiting/pending" });
     try {
-      const data = axios.patch(`http://localhost:4000/question/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-          "Content-type": "application/json",
-        },
-      });
+      const data = await fetch(
+        `http://localhost:4000/question/uppRaiting/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${state.user.token}`,
+          },
+        }
+      );
+      const res = await data.json()
+      console.log(res)
+
       dispatch({ type: "question/uppRaiting/fullfilled", payload: data });
     } catch (err) {
       dispatch({ type: "question/uppRaiting/rejected", error: err.toString() });
@@ -155,12 +144,15 @@ export const downRaiting = (id) => {
     const state = getState();
     dispatch({ type: "question/downRaiting/pending" });
     try {
-      const data = axios.patch(`http://localhost:4000/question/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-          "Content-type": "application/json",
-        },
-      });
+      const data = await fetch(
+        `http://localhost:4000/question/downRaiting/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${state.user.token}`,
+          },
+        }
+      );
       dispatch({ type: "question/downRaiting/fullfilled", payload: data });
     } catch (err) {
       dispatch({

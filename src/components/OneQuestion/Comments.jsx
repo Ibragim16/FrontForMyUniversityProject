@@ -4,7 +4,6 @@ import styles from "./question.module.css"
 import {format} from "timeago.js"
 
 const Comments = ({comment}) => {
-    console.log(comment)
 
     return (
         <div className={styles.commentBlocks}>

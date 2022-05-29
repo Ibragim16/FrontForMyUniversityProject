@@ -16,7 +16,6 @@ const Favorites = () => {
   
   const state = useSelector((state)=>state.favorite.favorites)
   const favoriteLoading = useSelector((state)=>state.favorite.favoriteLoading)
-  console.log(state)
   
   
   if(favoriteLoading)
@@ -35,7 +34,7 @@ const Favorites = () => {
       <div className={styles.MainContentBlock}>
           <div className={styles.tittle}>
         <div>
-          <h3>Все вопросы</h3>
+          <h3>Избранные</h3>
         </div>
         <div>
           <div class="form-check form-switch">
@@ -59,8 +58,8 @@ const Favorites = () => {
           state.questions.map((question) => {
               return(
   
-                  !check?<QuestionCard question={question} />
-                  :<QuestionSimpleCard question={question}/>
+                  !check?<QuestionCard question={question} state ={state} />
+                  :<QuestionSimpleCard question={question} state = {state}/>
               )
           })
         :

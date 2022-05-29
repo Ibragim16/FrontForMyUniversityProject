@@ -12,13 +12,51 @@ const favorite = (state = initialState, action) => {
         favoriteLoading: true,
       };
     case "favorite/get/fullfilled":
-        console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         favoriteLoading: false,
         favorites: action.payload,
       };
     case "favorite/get/rejected":
+      return {
+        ...state,
+        favoriteLoading: false,
+        error: action.error,
+      };
+    case "favorite/add/pending":
+      return {
+        ...state,
+        favoriteLoading: true,
+      };
+    case "favorite/add/fullfilled":
+      return {
+        ...state,
+        favoriteLoading: false,
+        favorites: action.payload,
+      };
+    case "favorite/add/rejected":
+      return {
+        ...state,
+        favoriteLoading: false,
+        error: action.error,
+      };
+    case "favorite/delete/pending":
+      return {
+        ...state,
+        favoriteLoading: true,
+      };
+    case "favorite/delete/fullfilled":
+      return {
+        ...state,
+        favoriteLoading: false,
+        favorites:{
+            ...state.favorites.questions.filter((item)=>{
+                return item._id !== action.payload
+            })
+        } ,
+      };
+    case "favorite/delete/rejected":
       return {
         ...state,
         favoriteLoading: false,
@@ -34,7 +72,6 @@ const favorite = (state = initialState, action) => {
 export default favorite;
 
 export const getFavorite = () => {
-    console.log(54)
   return async (dispatch, getState) => {
     const state = getState();
     dispatch({ type: "favorite/get/pending" });
@@ -56,12 +93,14 @@ export const addToFavorite = (id) => {
     const state = getState();
     dispatch({ type: "favorite/add/pending" });
     try {
-      const data = await axios.patch(`http://localhost:4000/favorite/${id}`, {
+      const data = await fetch(`http://localhost:4000/favorite/add/${id}`, {
+        method: "PATCH",
         headers: {
           Authorization: `Bearer ${state.user.token}`,
         },
       });
-      dispatch({ type: "favorite/add/fullfilled", payload: data });
+      const res = await data.json();
+      dispatch({ type: "favorite/add/fullfilled", payload: res });
     } catch (err) {
       dispatch({ type: "favorite/add/rejected", error: err.toString() });
     }
@@ -73,12 +112,13 @@ export const deleteToFavorite = (id) => {
     const state = getState();
     dispatch({ type: "favorite/delete/pending" });
     try {
-      const data = await axios.patch(`http://localhost:4000/favorite/${id}`, {
-        headers: {
-          Authorization: `Bearer ${state.user.token}`,
-        },
-      });
-      dispatch({ type: "favorite/delete/fullfilled", payload: data });
+        const data = await fetch(`http://localhost:4000/favorite/delete/${id}`, {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${state.user.token}`,
+            },
+          });
+      dispatch({ type: "favorite/delete/fullfilled", payload: id });
     } catch (err) {
       dispatch({ type: "favorite/delete/rejected", error: err.toString() });
     }
