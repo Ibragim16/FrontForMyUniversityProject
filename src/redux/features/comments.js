@@ -35,6 +35,7 @@ const comments = (state = initialState, action) => {
     case "comments/deleted/fullfilled":
       return {
         ...state,
+        commentsLoading: false,
         comments: [
           ...state.comments.filter((item) => {
             return item._id !== action.payload;

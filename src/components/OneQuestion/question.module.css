@@ -66,13 +66,7 @@
     text-align: left;
 
 }
-.commentsInputBlock input {
-    width: 800px;
-    height: 200px;
-    border: 1px solid rgba(205, 205, 205, 0.634);
-    border-radius: 7px;
 
-}
 .commentsInputBlock button{
     margin-top: 10px;
     border: none;
@@ -83,10 +77,11 @@
     font-size: 20px;
 }
 .commentsTitle{
-    width: 200px;
+    width: 800px;
     margin-left: 50px;
     text-align: left;
     display: flex;
+    justify-content: space-between;
 }
 .commentsTitle img{
     width: 60px;
@@ -109,6 +104,9 @@
     margin-top: 30px;
 }
 
+.deleteComment{
+  margin-right: 70px;
+}
 
 /* Стили для спинера */
 .preloader {

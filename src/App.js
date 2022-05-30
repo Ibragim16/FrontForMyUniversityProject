@@ -5,6 +5,7 @@ import "./App.css";
 import Signin from "./components/Authorization/Signin";
 import Signup from "./components/Authorization/Signup";
 import Favorites from "./components/Content/FavoritesBlock/Favorites";
+import QuestionAdd from "./components/Content/QuestionAdd/QuestionAdd";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
 import Question from "./components/OneQuestion/Question";
@@ -40,7 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/signin" element={<Navigate to="/" replace/>} />
-
+        <Route path="/addQuestion" element={<QuestionAdd/>}/>
         <Route path="/favorite" element={<Favorites/>}/>
         <Route path="/question/:id" element={<Question state = {state}/>}/>
 
