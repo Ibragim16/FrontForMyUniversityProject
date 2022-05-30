@@ -81,11 +81,12 @@ const Question = ({ state }) => {
       </div>
       <div className={styles.commentsInputBlock}>
         <div>
-          <input
-            type="text-area"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
+        <div class="form-floating">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" value={comment}
+            onChange={(e) => setComment(e.target.value)} style={{height: "100px"}}></textarea>
+  <label for="floatingTextarea2">Comment</label>
+          
+          </div>
         </div>
         <button onClick={() => handleAddComment()}>опубликовать</button>
       </div>

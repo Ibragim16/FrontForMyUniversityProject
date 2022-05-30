@@ -12,7 +12,6 @@ const favorite = (state = initialState, action) => {
         favoriteLoading: true,
       };
     case "favorite/get/fullfilled":
-      console.log(action.payload);
       return {
         ...state,
         favoriteLoading: false,
@@ -54,7 +53,8 @@ const favorite = (state = initialState, action) => {
             ...state.favorites.questions.filter((item)=>{
                 return item._id !== action.payload
             })
-        } ,
+        }
+         ,
       };
     case "favorite/delete/rejected":
       return {
@@ -118,6 +118,8 @@ export const deleteToFavorite = (id) => {
               Authorization: `Bearer ${state.user.token}`,
             },
           });
+          const result = await data.json()
+          console.log(result)
       dispatch({ type: "favorite/delete/fullfilled", payload: id });
     } catch (err) {
       dispatch({ type: "favorite/delete/rejected", error: err.toString() });

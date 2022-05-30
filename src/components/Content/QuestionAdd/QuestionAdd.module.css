@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+}
+.tittle{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+}
+.questionMainBlock{
+    width: 1200px;
+    margin: 15px auto;
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 10px -5px;
+    padding: 25px 0px;
+}
+.authorINF{
+    width: 1160px;
+    margin: auto;
+    text-align: left;
+}
+.inputQuestion input{
+  width: 1160px;
+  height: 40px;
+  border: 1px solid rgba(158, 157, 157, 0.562);
+  border-radius: 5px;
+  
+}
+
+.QuestionTitle{
+    margin-bottom: 20px;
+     color: rgba(0, 0, 0, 0.952)
+}
+
+.QuestionTitleBlock{
+    width: 1160px;
+     margin: 25px auto, 20px;
+     text-align: left
+}
+.Tags{
+    width: 1160px;
+    height: 100px;
+    display: flex;
+    border: 1px solid rgba(158, 157, 157, 0.562);
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+}
+.QuestionAddButton{
+    margin-top: 10px;
+    border: none;
+    background-color: rgba(43, 85, 252, 0.747);
+    border-radius: 10px;
+    font-weight: 900;
+    color: rgb(245, 245, 245);
+    font-size: 18px;
+}
+.QuestionCancelButton{
+    margin: 10px 0 0 10px;
+    border: none;
+    background-color: rgba(251, 251, 251, 0.747);
+    border-radius: 10px;
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+.tagBlock{
+
+    max-width: 50px;
+    height: 30px;
+    margin-top: 10px  ;
+    margin-right: 10px ;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid, black;
+}

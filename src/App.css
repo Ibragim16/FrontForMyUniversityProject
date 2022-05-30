@@ -7,6 +7,19 @@ body{
   font-size: 15px;
   color: rgba(41, 40, 40, 0.974);
   line-height: 1.6;
+
+
+
+  
+    background: rgba(30,29,31,1);
+  background: -moz-linear-gradient(-45deg, rgba(30, 29, 31, 0.05) 0%, rgb(250, 235, 238) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(30,29,31,1)), color-stop(100%, rgba(223,64,90,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(30, 29, 31, 0.05) 0%, rgb(250, 235, 238) 100%);
+  background: -o-linear-gradient(-45deg, rgba(30, 29, 31, 0.05) 0%, rgb(250, 235, 238) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(30, 29, 31, 0.05) 0%, rgb(250, 235, 238) 100%);
+  background: linear-gradient(135deg, rgba(30, 29, 31, 0.05) 0%, rgb(250, 235, 238) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1d1f', endColorstr='#df405a', GradientType=1 );
+  
 }
 h3{
   font-weight: 500;

@@ -57,9 +57,11 @@ const Favorites = () => {
           ?
           state.questions.map((question) => {
               return(
-  
-                  !check?<QuestionCard question={question} state ={state} />
+                <React.Fragment key={question._id}>
+                  {!check?<QuestionCard question={question} state ={state} />
                   :<QuestionSimpleCard question={question} state = {state}/>
+              }
+                </React.Fragment>
               )
           })
         :
