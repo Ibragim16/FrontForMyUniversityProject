@@ -25,7 +25,7 @@ const Signin = () => {
             </div>
             <div className={styles.passwordInput}>
                 <span>Password</span><br/>
-            <input type="text" value={password} onChange={(e)=> setPassword(e.target.value)} />
+            <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} />
             </div>
             <div>
 

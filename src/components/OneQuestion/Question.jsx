@@ -50,7 +50,10 @@ const Question = ({ state }) => {
       <div className={styles.QuestionCard}>
         <div className={styles.cardTittle}>
           <div className={styles.cardAuthor}>
+            <div className={styles.imgContainer}>
             <img src={question?.author?.img} alt="Icon" />
+
+            </div>
             <span>{question?.author?.firstName}</span>
             <span className={styles.addedTime}>
               Добавлен {format(question?.createdAt)}

@@ -162,3 +162,28 @@ export const downRaiting = (id) => {
     }
   };
 };
+
+export const addQuestion = (title,text,tag)=>{
+  return async(dispatch, getState)=>{
+    const state = getState()
+    dispatch({type: "question/post/pending"})
+    try{
+      const data = await fetch("http://localhost:4000/question",{
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${state.user.token}`,
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({text,title,tag})
+      })
+      const result = await data.json()
+      console.log(result)
+      dispatch({type: "question/post/fullfilled", payload: result })
+
+    }
+    catch(err){
+      dispatch({type: "question/post/rejected", error: err.toString()})
+
+    }
+  }
+}

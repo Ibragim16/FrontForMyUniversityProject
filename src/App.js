@@ -8,6 +8,7 @@ import Favorites from "./components/Content/FavoritesBlock/Favorites";
 import QuestionAdd from "./components/Content/QuestionAdd/QuestionAdd";
 import Header from "./components/header/Header";
 import Main from "./components/Main";
+import Messanger from "./components/Messenger/Messanger";
 import Question from "./components/OneQuestion/Question";
 import { getQuestion } from "./redux/features/question";
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/addQuestion" element={<QuestionAdd/>}/>
         <Route path="/favorite" element={<Favorites/>}/>
         <Route path="/question/:id" element={<Question state = {state}/>}/>
+        <Route path="/messanger" element={<Messanger/>} />
 
       </Routes>
     </div>

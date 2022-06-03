@@ -15,7 +15,10 @@ const Comments = ({comment}) => {
         <div className={styles.commentBlocks}>
             <div className={styles.commentsTitle}>
                 <span style={{display: "flex"}}>
+                    <div className={styles.commentImgContainer}>
                 <img src={comment.author.img} alt="" />
+
+                    </div>
                 <div className={styles.commentsUserInf}>
                     <div>{comment.author.firstName}</div>
                     <span className={styles.addedTime}>{format(comment.createdAt)}</span>

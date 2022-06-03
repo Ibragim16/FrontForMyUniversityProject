@@ -79,7 +79,7 @@ const QuestionSimpleCard = ({question, state}) => {
                     <div>{likesCount}</div>
                 </div>
                 <div className={styles.discussion}>
-                    <span><img style={{width: "25px"}}src="https://www.la-sincere.ee/wp-content/uploads/2016/10/chat-3385366231.png" alt="" /></span>
+                    <span><img style={{width: "25px"}}src="https://cdn-icons-png.flaticon.com/128/7420/7420948.png" alt="" /></span>
                     <Link to={`/question/${question._id}`}><button>обсуждение</button></Link>
                     
                 </div>

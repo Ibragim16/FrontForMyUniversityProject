@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addQuestion } from "../../../redux/features/question";
 import { getUser } from "../../../redux/features/user";
 import styles from "./QuestionAdd.module.css";
 
@@ -8,14 +9,20 @@ const QuestionAdd = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-  const [text, setText] = useState();
+
+  const [title, setTitle] = useState()
+  const [text, setText] = useState()
+  const [tagText, setTagText] = useState();
   const [tag, setTag] = useState([]);
   const handleAddTag = () => {
-    setTag((prev) => [...prev, text]);
-    setText("");
+    setTag((prev) => [...prev, tagText]);
+    setTagText("");
   };
   const handleDeleteTag = (ind)=>{
       setTag(tag.filter((item)=>item !==ind))
+  }
+  const handleAddQuestion = (title, text, tag)=>{
+      dispatch(addQuestion(title, text, tag))
   }
   const { firstname, img } = useSelector((state) => state.user);
   return (
@@ -27,18 +34,18 @@ const QuestionAdd = () => {
       </div>
       <div className={styles.questionMainBlock}>
         <div className={styles.authorINF}>
-          <span>
+          <div style={{width: "50px", height: "50px",  borderRadius: "50%",overflow: "hidden",}}>
             <img
               style={{
-                width: "50px",
-                borderRadius: "50%",
+                width: "auto",
+               height: "100%",
                 marginRight: "10px",
               }}
               src={img}
               alt="ddd"
             />
-          </span>
-          <span>{firstname}</span>
+          </div>
+          <span style={{marginTop: "15px", marginLeft: "10px"}}>{firstname}</span>
         </div>
         <div
           style={{
@@ -51,7 +58,9 @@ const QuestionAdd = () => {
             Сформулируйте вопрос*
           </div>
           <div className={styles.inputQuestion}>
-            <input type="text" placeholder="Введите текст" />
+            <input type="text" placeholder="Введите текст"
+            value={title}
+            onChange={(e)=> setTitle(e.target.value)} />
           </div>
           <div
             style={{ margin: "30px 0 10px 0", color: "rgba(0, 0, 0, 0.952)" }}
@@ -65,6 +74,8 @@ const QuestionAdd = () => {
               placeholder="Leave a comment here"
               id="floatingTextarea2"
               style={{ height: "200px" }}
+              value={text}
+              onChange={(e)=> setText(e.target.value)}
             ></textarea>
             <label for="floatingTextarea2"></label>
           </div>
@@ -87,13 +98,13 @@ const QuestionAdd = () => {
               <input
                 style={{ width: "100px" }}
                 type="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                value={tagText}
+                onChange={(e) => setTagText(e.target.value)}
               />
             </div>
           </div>
           <div>
-            <button className={styles.QuestionAddButton}>опубликовать</button>
+            <button className={styles.QuestionAddButton} onClick={()=> handleAddQuestion(title,text,tag)}>опубликовать</button>
             <button className={styles.QuestionCancelButton}>отмена</button>
           </div>
         </div>
